@@ -31,13 +31,13 @@ function calculate(elementID) {
   var disAmount = mainRow.querySelectorAll('[name=disam]')[0];
   var allPrice = mainRow.querySelectorAll('[name=allpr]')[0];
 
-  let myResult1 = myBox1 * myBox3;
+  let myResult1 = Math.round (myBox1* myBox3).toFixed(2);
   total.value = myResult1;
 
-  let myResult2 = (disPer / 100)* total.value;
+  let myResult2 = Math.round ((disPer / 100)* total.value).toFixed(2);
   disAmount.value = myResult2;
 
-  let myResult3 = total.value - disAmount.value;
+  let myResult3 = Math.round (total.value - disAmount.value).toFixed(2);
   allPrice.value = myResult3;
   totalvalues();// calling my function here
 }
@@ -51,19 +51,23 @@ function totalvalues() {
       //rows would be accessed using the "row" variable assigned in the for loop
       for (var j = 0, col; col = row.cells[j]; j++) {
         //columns would be accessed using the "col" variable assigned in the for loop
+        if(col.children[1].value != ''){
         if (j == 2) {
           //alert('col html>>'+col.children[1].value);
-          grossrates += parseInt(col.children[1].value);
+          
+            grossrates += (Math.round (parseFloat(col.children[1].value).toFixed(2)));
+          
+         
         }
         if (j == 5) {
             //alert('col html>>'+col.children[1].value);
-            finalvalues += parseInt(col.children[1].value);
+            finalvalues += (Math.round (parseFloat(col.children[1].value).toFixed(2)));
           }
         if (j == 4) {
             //alert('col html>>'+col.children[1].value);
-            discountamount += parseInt(col.children[1].value);
+            discountamount += (Math.round (parseFloat(col.children[1].value).toFixed(2)));
           }
-      }
+      }}
     }
 
     var grandGross = document.getElementById('grossTax');
